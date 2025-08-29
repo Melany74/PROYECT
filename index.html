@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidores de Internet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .servidor-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 25px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servidor-image {
+            width: 150px;
+            height: 120px;
+            float: right;
+            margin: 0 0 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        .text-breve {
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: 500;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .servidor-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .servidor-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .servidor-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dns { background: #CC2F5C; }
+        .web { background: #2ecc71; }
+        .ftp { background: #f39c12; }
+        .dhcp { background: #9b59b6; }
+        .mail { background: #1abc9c; }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin: 0;
+        }
+
+        h3 {
+            color: #3498db;
+            font-size: 1.3em;
+            margin: 15px 0 10px 0;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .descripcion {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .ejemplo {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .ejemplo strong {
+            color: #2c3e50;
+        }
+
+        .funcion-list {
+            margin: 10px 0;
+        }
+
+        .funcion-list li {
+            margin: 8px 0;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .funcion-list li::before {
+            content: "→";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: -5px;
+        }
+
+        .mail-protocols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .protocol {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+
+        .protocol h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .smtp { border-color: #e74c3c; }
+        .imap { border-color: #2ecc71; }
+        .pop3 { border-color: #f39c12; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-top: 40px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .servidor-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .servidor-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Servidores de Internet</h1>
+            <p class="subtitle">Conoce los diferentes tipos de servidores y sus funciones</p>
+        </header>
+
+        <main>
+            <!-- Servidor DNS -->
+            <section class="servidor-section">
+                <div class="servidor-header">
+                    <div class="servidor-icon dns">DNS</div>
+                    <h2>Servidor DNS</h2>
+                </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/2092/2092063.png" alt="DNS Server" class="servidor-image">
+                
+                <div class="text-breve">
+                    <strong>Texto breve:</strong> Sistema que traduce nombres de dominio a direcciones IP, como una guía telefónica de Internet.
+                </div>
+                
+                <h3>¿Qué es y para qué sirve?</h3>
+                <p class="descripcion">
+                    El DNS (Domain Name System) es un sistema que traduce nombres de dominio legibles por humanos 
+                    (como www.google.com) a direcciones IP numéricas que las computadoras pueden entender. 
+                    Funciona como una "guía telefónica" de Internet, permitiendo que navegues usando nombres 
+                    fáciles de recordar en lugar de números complicados.
+                </p>
+                
+                <div class="ejemplo">
+                    <strong>Ejemplo:</strong> Cuando escribes www.google.com en tu navegador, el servidor DNS 
+                    lo traduce automáticamente a la dirección IP 142.250.191.14, que es la ubicación real 
+                    del servidor de Google.
+                </div>
+            </section>
+
+            <!-- Servidor WEB -->
+            <section class="servidor-section">
+                <div class="servidor-header">
+                    <div class="servidor-icon web">WEB</div>
+                    <h2>Servidor WEB</h2>
+                </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Web Server" class="servidor-image">
+                
+                <div class="text-breve">
+                    <strong>Texto breve:</strong> Almacena y entrega páginas web, imágenes y contenido a los usuarios que navegan por Internet.
+                </div>
+                
+                <h3>¿Qué es y qué función cumple?</h3>
+                <p class="descripcion">
+                    Un servidor web almacena, procesa y entrega páginas web, imágenes, videos y otros recursos 
+                    web a los usuarios. Cuando solicitas una página web, el servidor procesa tu solicitud HTTP/HTTPS 
+                    y te envía el contenido correspondiente.
+                </p>
+                
+                <h3>Funciones principales:</h3>
+                <ul class="funcion-list">
+                    <li>Almacenar archivos web (HTML, CSS, JavaScript, imágenes)</li>
+                    <li>Procesar solicitudes de los navegadores</li>
+                    <li>Ejecutar aplicaciones web dinámicas</li>
+                    <li>Gestionar bases de datos</li>
+                </ul>
+                
+                <div class="ejemplo">
+                    <strong>Ejemplo:</strong> Los servidores que alojan las páginas que visitas diariamente como 
+                    Facebook, YouTube, Netflix, Wikipedia, Instagram, y cualquier sitio web que uses.
+                </div>
+            </section>
+
+            <!-- Servidor FTP -->
+            <section class="servidor-section">
+                <div class="servidor-header">
+                    <div class="servidor-icon ftp">FTP</div>
+                    <h2>Servidor FTP</h2>
+                </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149347.png" alt="FTP Server" class="servidor-image">
+                
+                <div class="text-breve">
+                    <strong>Texto breve:</strong> Permite transferir archivos entre computadoras, ideal para subir y descargar archivos por Internet.
+                </div>
+                
+                <h3>¿Para qué se usa?</h3>
+                <p class="descripcion">
+                    FTP (File Transfer Protocol) permite transferir archivos entre computadoras a través de Internet 
+                    de forma segura y eficiente. Se utiliza tanto para subir archivos desde tu computadora a un 
+                    servidor como para descargar archivos desde un servidor a tu computadora.
+                </p>
+                
+                <h3>Usos comunes:</h3>
+                <ul class="funcion-list">
+                    <li>Desarrolladores web suben archivos a sus sitios web</li>
+                    <li>Descargar software desde repositorios oficiales</li>
+                    <li>Backup y sincronización de archivos</li>
+                    <li>Compartir archivos grandes entre empresas</li>
+                </ul>
+                
+                <div class="ejemplo">
+                    <strong>Ejemplo:</strong> Un diseñador web que sube las imágenes y archivos HTML de un sitio 
+                    web al servidor de hosting, o descargar programas desde servidores FTP de universidades 
+                    o empresas de software.
+                </div>
+            </section>
+
+            <!-- Servidor DHCP -->
+            <section class="servidor-section">
+                <div class="servidor-header">
+                    <div class="servidor-icon dhcp">DHCP</div>
+                    <h2>Servidor DHCP</h2>
+                </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/2092/2092457.png" alt="DHCP Server" class="servidor-image">
+                
+                <div class="text-breve">
+                    <strong>Texto breve:</strong> Asigna automáticamente direcciones IP a dispositivos en la red, evitando configuraciones manuales.
+                </div>
+                
+                <h3>¿Qué hace con las direcciones IP?</h3>
+                <p class="descripcion">
+                    DHCP (Dynamic Host Configuration Protocol) asigna automáticamente direcciones IP y 
+                    configuración de red a dispositivos que se conectan a una red. Esto evita conflictos 
+                    de IP y facilita enormemente la administración de redes grandes y pequeñas.
+                </p>
+                
+                <h3>Configuraciones que asigna:</h3>
+                <ul class="funcion-list">
+                    <li>Dirección IP única para cada dispositivo</li>
+                    <li>Máscara de subred</li>
+                    <li>Gateway predeterminado (puerta de enlace)</li>
+                    <li>Servidores DNS</li>
+                </ul>
+                
+                <div class="ejemplo">
+                    <strong>Ejemplo:</strong> El router en tu casa funciona como servidor DHCP y asigna automáticamente 
+                    direcciones IP como 192.168.1.100 a tu celular, 192.168.1.101 a tu laptop, 192.168.1.102 a tu 
+                    Smart TV, etc., sin que tengas que configurar nada manualmente.
+                </div>
+            </section>
+
+            <!-- Servidor de Correos -->
+            <section class="servidor-section">
+                <div class="servidor-header">
+                    <div class="servidor-icon mail">MAIL</div>
+                    <h2>Servidor de Correos</h2>
+                </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Mail Server" class="servidor-image">
+                
+                <div class="text-breve">
+                    <strong>Texto breve:</strong> Gestiona el envío y recepción de correos electrónicos usando protocolos SMTP, IMAP y POP3.
+                </div>
+                
+                <h3>Diferencia entre enviar y recibir correos:</h3>
+                <p class="descripcion">
+                    Los servidores de correo manejan el envío, recepción y almacenamiento de emails. 
+                    Utilizan diferentes protocolos según la función que realicen:
+                </p>
+                
+                <div class="mail-protocols">
+                    <div class="protocol smtp">
+                        <h4>SMTP (Simple Mail Transfer Protocol)</h4>
+                        <p><strong>Función:</strong> ENVIAR correos</p>
+                        <p>Se encarga de transportar los emails desde tu cliente de correo hacia el servidor 
+                        del destinatario.</p>
+                    </div>
+                    
+                    <div class="protocol imap">
+                        <h4>IMAP (Internet Message Access Protocol)</h4>
+                        <p><strong>Función:</strong> RECIBIR y sincronizar correos</p>
+                        <p>Permite acceder a los correos desde múltiples dispositivos manteniendo 
+                        sincronización entre todos.</p>
+                    </div>
+                    
+                    <div class="protocol pop3">
+                        <h4>POP3 (Post Office Protocol)</h4>
+                        <p><strong>Función:</strong> DESCARGAR correos</p>
+                        <p>Descarga los correos a un solo dispositivo, generalmente eliminándolos 
+                        del servidor después de la descarga.</p>
+                    </div>
+                </div>
+                
+                <div class="ejemplo">
+                    <strong>Ejemplo:</strong> Gmail utiliza servidores SMTP para enviar tus correos y servidores 
+                    IMAP para que puedas leer tus emails tanto en tu celular como en tu computadora, 
+                    manteniendo todo sincronizado.
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 - Proyecto de Servidores de Internet</p>
+            <p>Creado con HTML y CSS</p>
+        </footer>
+    </div>
+</body>
+</html>
